@@ -7,11 +7,11 @@ class Bird {
     var $conservation;
     var $song = "chirp";
     var $flying = "yes";
-    static instance_count;
-    static egg_num = 0;
+    static $instance_count;
+    static $egg_num = 0;
 
     function can_fly() {
-      if ( static::$flying == "yes" ) {
+      if ( $this->flying == "yes" ) {
         $flying_string = "bird can fly";
         } else {
         $flying_string = " cannot fly and it stuck on the ground";
@@ -20,11 +20,14 @@ class Bird {
     }
 
     static function create() {
-
+      $class = get_called_class();
+      $new_obj = new $class;
+      self::$instance_count++;
+      return $new_obj;
     }
 }
 
-static egg_num = "3-4, sometimes 5.";
+static $egg_num = "3-4, sometimes 5.";
 
 class YellowBelliedFlyCatcher extends Bird {
     var $name = "yellow-bellied flycatcher";
